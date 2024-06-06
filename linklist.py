@@ -83,7 +83,6 @@ class LinkList :
 
         return current.data
     
-
     def reverse (self) :
         current = self.head
         prev = None
@@ -121,7 +120,6 @@ class LinkList :
             p2 = p2.next
 
         return True
-    
 
     def reverseBetween(self,left,right) :
 
@@ -179,6 +177,42 @@ class LinkList :
             postion +=1
         return oddNode + eveNode
     
+    def leetcode25(self,k):
+
+        listLength = 0
+        current = self.head
+
+        while current :
+
+            listLength += 1
+            current = current.next
+        
+        print("The length of the list is : " + str(listLength))
+
+        if k > listLength:
+            return
+        
+        elif k == listLength:
+
+            self.reverseTillK(self.head,k)
+
+
+
+    
+    def reverseTillK(self,node,k):
+
+        current = node
+        prev = None
+
+        while current and k > 0:
+            temp = current.next 
+            current.next = prev
+            prev = current
+            current = temp
+            k -= 1
+        node = prev
+        return node
+
     def search (self,value) :
         
         current = self.head
@@ -209,24 +243,14 @@ if __name__ == "__main__":
     ll.insertAtStart(4)
     ll.insertAtStart(5)
 
-
-
-    # ll.insertAtStart('2')
-    # ll.insertAtStart('3')
-    # ll.insertAtStart('4')
-    # ll.insertAtStart('4')
-    # ll.insertAtStart('3')
-    # ll.insertAtStart('2')
-    # ll.insertAtStart('1')
-    # ll.printList() 
-    ll.reverse()
+    # ll.reverse()
 
     # ll.reverseInPositions(2,4)
     ll.printList()
 
-    print("Deleted : "+ str(ll.deleteInPosition(2)))
+    # print("Deleted : "+ str(ll.deleteInPosition(2)))
     # ll.reverseBetween(3,6)
-    ll.printList()
+    # ll.printList()
 
 
 
@@ -239,3 +263,7 @@ if __name__ == "__main__":
     # print(ll.search(2))
 
     # ll.printList()
+
+    ll.leetcode25(5)
+
+    ll.printList()
